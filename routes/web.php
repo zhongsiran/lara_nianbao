@@ -11,6 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/corp', "CorpController@index")->name('corp.index');
+Route::resource('corp', 'CorpController');
+
