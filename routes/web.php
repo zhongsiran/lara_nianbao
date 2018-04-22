@@ -11,6 +11,4 @@
 |
 */
 
-// Route::get('/corp', "CorpController@index")->name('corp.index');
-Route::resource('corp', 'CorpController');
-
+Route::resource('corp', 'CorpsController')->only(['index', 'show', 'edit', 'update']);

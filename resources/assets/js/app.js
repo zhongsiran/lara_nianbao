@@ -1,3 +1,4 @@
+import Axios from 'axios';
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -15,7 +16,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'));
 
 const app = new Vue({
     el: '#app',
@@ -29,16 +30,83 @@ const app = new Vue({
         // 取得联络员电话及情况
         cphone: $('#cphone').val(),
         cphone_status: $('#cphone_status').val(),
+        cphone_update_result: '选择联络电话情况',
         // 取得电话及情况
         phone: $('#phone').val(),
-        phone_status: $('#phone_status').val()
+        phone_status: $('#phone_status').val(),
+        phone_update_result: '选择企业电话情况',
+        // ajax更新链接
+        update_url: (document.head.querySelector('meta[name="update-link"]').content)
     },
     methods: {
         set_status: function (msg) {
             alert(msg);
         },
         log_phone_status: function() {
-            console.log(this.phone_status);
+            var vm = this;
+            axios.patch(vm.update_url,{
+                phone_status: vm.phone_status
+            })
+            .then(function (res) {
+                switch (res.data.result) {
+                    case 'success':
+                        vm.phone_update_result = '更新成功！！'
+                        break;
+                    default:
+                        vm.phone_update_result = '更新失败！！'
+                        break;
+                }
+            })
+            .catch(function (error) {
+                vm.answer = 'Error! Could not reach the API. ' + error
+            })
+        },
+        log_cphone_status: function () {
+            var vm = this;
+            axios.patch(vm.update_url, {
+                cphone_status: vm.cphone_status
+            })
+            .then(function (res) {
+                switch (res.data.result) {
+                    case 'success':
+                        vm.cphone_update_result = '更新成功！！'
+                        break;
+                    default:
+                        vm.cphone_update_result = '更新失败！！'
+                        break;
+                }
+            })
+            .catch(function (error) {
+                vm.answer = 'Error! Could not reach the API. ' + error
+            })
+        },
+        /**
+         *  根据传入的类型,生成对应的打电话情况,用于更新到数据库中.
+         *  @param string type
+         *  @var string phone_called 实际拨打的电话
+         *  @var string person_called 实际拨打的人员(方面)
+         *  @var string called_status 最新的拨打情况
+         */
+        generate_call_text:function (type) {
+            switch (type) {
+                case 'phone':
+                    var phone_called = this.phone
+                    var person_called = '企业登记电话'
+                    var called_status = this.phone_status
+                    break;
+                case 'cphone':
+                    var phone_called = this.cphone
+                    var person_called = '联络员电话'
+                    var called_status = this.cphone_status
+                    break;
+                default:
+                    console.log(type);
+                    break;
+            }
+            
+            let computed_new_called_text = ' 年月日,某人拨打' + person_called + phone_called + '，结果为' + called_status + ' |'
+            // todo 补回原来的生成结果代码
+            this.new_phone_call_text += computed_new_called_text;
         }
     },
     computed: {

@@ -1,16 +1,9 @@
-@extends('layouts._default')
+
+@extends('layouts._default', $corp)
 
 @section('content')
-    @foreach ($corps as $corp)
-    {{--  <h2 id="corp_info_title">企业情况 —— {{$corp->Division}} —— 第{{$corp->div_corp_index}}号 </h2>  --}}
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="#">{{$corp->type}}</a></li>
-            <li class="breadcrumb-item"><a href="#">{{$corp->Division}}</a></li>
-            <li class="breadcrumb-item active" aria-current="page">第{{$corp->div_corp_index}}号</li>
-        </ol>
-    </nav>
-    <h4 id="corp_info_title">企业信息</h4>
+    @include('layouts._navi_bar')
+    <h4 style="margin:0" id="corp_info_title">企业信息</h4>
     <table class="table table-dark table-striped table-bordered table-sm">
         <thead>
             <th scope="col">项目</th>
@@ -67,6 +60,5 @@
             </tr>
         </tbody>
     </table>
-    @endforeach
     @yield('input_area')
 @endsection

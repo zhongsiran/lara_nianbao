@@ -15,7 +15,8 @@
 
 body {
   font-family: $font-family;
-  background-color: gray;
+  background-color: #444455;
+  padding-top: 60px;
 }
 
 #corp_info_title, #input_area_title {
@@ -25,4 +26,13 @@ body {
 
 .name_and_phone {
   font-size: 1.5em;
+}
+
+#input-table {
+  th {
+    width:9rem;
+  }
+  textarea {
+    width:50rem;
+  }
 }

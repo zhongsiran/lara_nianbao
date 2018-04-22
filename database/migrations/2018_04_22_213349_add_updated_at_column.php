@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCorpsTable extends Migration
+class AddUpdatedAtColumn extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class CreateCorpsTable extends Migration
      */
     public function up()
     {
-        Schema::create('corps', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
+        Schema::table('shiling_nianbao_corp', function (Blueprint $table) {
+            $table->timestamp('updated_at');
         });
     }
 
@@ -26,6 +25,8 @@ class CreateCorpsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('corps');
+        Schema::table('shiling_nianbao_corp', function (Blueprint $table) {
+             $table->dropColumn('updated_at');
+        });
     }
 }
