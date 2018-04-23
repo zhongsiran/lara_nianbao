@@ -1,0 +1,1 @@
+@extends('layouts._corp_info') 

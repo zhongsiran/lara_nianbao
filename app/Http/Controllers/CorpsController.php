@@ -14,7 +14,7 @@ class CorpsController extends Controller
      */
     public function index()
     {
-        $corps = Corp::take(10)
+        $corps = Corp::where('Status', '<>', ' ')
                 ->get();
         return view('corp.index',['corps' => $corps]);
     }
@@ -29,7 +29,7 @@ class CorpsController extends Controller
     {
         $corp = Corp::find($id); //find得到的是object,可以在BLADE中使用$corp->xxx
             // ->get(); get得到的是collection,需要使用$corp[0]->xxx,或者 $corp->first()->xxx
-        return view('corp.test_form', ['corp'=>$corp]);        
+        return view('corp.show', ['corp'=>$corp]);        
     }
     
     /**

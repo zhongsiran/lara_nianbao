@@ -13,7 +13,7 @@
                 <div class="form-row">
                     <div class="col">
                         <label for="phone_status">{{phone_update_result}}</label>
-                        <select @change="log_phone_status" v-model="phone_status" class="form-control" id="phone_status">
+                        <select @change="log_phone_status" v-model="phone_status" class="form-control" style="width:auto" id="phone_status">
                         <option></option>
                         <option>空号</option>
                         <option>停机</option>
@@ -23,7 +23,7 @@
                     </div>
                     <div v-if="cphone!='无电话记录'" class="col">
                         <label for="cphone_status"> {{cphone_update_result}}</label>
-                        <select @change="log_cphone_status" v-model="cphone_status" class="form-control" id="cphone_status">
+                        <select @change="log_cphone_status" v-model="cphone_status" class="form-control" style="width:auto" id="cphone_status">
                         <option></option>
                         <option>空号</option>
                         <option>停机</option>
@@ -43,7 +43,7 @@
                 <input v-if="new_phone_call_text" class="btn btn-success" type="button" value="保存最新电联情况">
                 <input v-else class="btn btn-secondary" type="button" value="保存最新电联情况">
                 <br />
-                <textarea v-model="new_phone_call_text" id="update_phone_call" style="margin:0.4rem 0 0 0">{{new_phone_call_text}}</textarea>
+                <textarea class="form-control" v-model="new_phone_call_text" id="update_phone_call" style="margin:0.4rem 0 0 0">{{new_phone_call_text}}</textarea>
                 <br />
                 <p style="margin:0 0.4rem 0 0"> 预览最终结果:</p>
                 <p>{{preview_new_phone_call}}</p>
@@ -55,7 +55,7 @@
                 <input v-if="new_bei_zhu_text" class="btn btn-success" type="button" value="保存最新备注情况">
                 <input v-else class="btn btn-secondary" type="button" value="保存最新备注情况">
                 <br />
-                <textarea v-model="new_bei_zhu_text" id="update_bei_zhu" style="margin:0.4rem 0 0 0"></textarea>
+                <textarea class="form-control" v-model="new_bei_zhu_text" id="update_bei_zhu" style="margin:0.4rem 0 0 0"></textarea>
                 <br />
                 <p style="margin:0 0.4rem 0 0"> 预览最终结果:</p>
                 <p>{{preview_new_bei_zhu}}</p>

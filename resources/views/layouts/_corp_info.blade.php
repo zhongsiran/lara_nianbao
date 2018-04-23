@@ -48,13 +48,13 @@
                     
                 @switch($corp->Status)
                     @case("已经通知")
-                        <td style="background-color:green">{{$corp->Status}}</td>
+                        <td style="color:green">{{$corp->Status}}</td>
                         @break
                     @case("需要跟进")
-                        <td style="background-color:yellow">{{$corp->Status}}</td>
+                        <td style="color:yellow">{{$corp->Status}}</td>
                         @break
                     @case("无可救药")
-                        <td style="background-color:red">{{$corp->Status}}</td>
+                        <td style="color:red">{{$corp->Status}}</td>
                         @break                        
                 @endswitch
             </tr>
