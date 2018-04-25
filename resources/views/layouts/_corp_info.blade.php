@@ -16,35 +16,40 @@
                 <th scope="row">注册号</th>
                 <td> {{$corp->RegNum}}</td>
             </tr>
+
             <tr>
                 <th scope="row">字号</th>
                 <td class="name_and_phone">{{$corp->CorpName}} </td>
             </tr>
+
             <tr>
                 <th scope="row">备注信息</th>
                 <td id="old_bei_zhu_record">{{$corp->InspectionRecord}}</td>
             </tr>
+
             <tr>
                 <th scope="row">电话记录</th>
                 <td id="old_phone_call_record">{{$corp->PhoneCallRecord}}</td>
             </tr>
+
             <tr>
                 <th scope="row">法人及登记电话</th>
-                    <td>{{$corp->RepPerson}} : <span class="name_and_phone">{{$corp->Phone}}({{$corp->phone_status}})</span> </td>
+                    <td>{{$corp->RepPerson}} : <span class="name_and_phone">{{preg_replace("/^(\d{3})(\d{4})(\d{4})$/", "$1-$2-$3", $corp->Phone)}}({{$corp->phone_status}})</span> </td>
                     <input id="phone" type="hidden" value="{{$corp->Phone}}">
                     <input id="phone_status" type="hidden" value="{{$corp->phone_status}}">
-                </tr>
-                <tr>
-                    <th scope="row">联络员及电话</th>
-                    <td>
-                        {{$corp->ContactPerson}} :
-                        <span class="name_and_phone">
-                                        {{$corp->ContactPhone}}({{$corp->cphone_status}})
-                                    </span>
-                        <input id="cphone" type="hidden" value="{{$corp->ContactPhone}}">
-                        <input id="cphone_status" type="hidden" value="{{$corp->cphone_status}}">
-                    </td>
-                </tr>
+            </tr>
+            <tr>
+                <th scope="row">联络员及电话</th>
+                <td>
+                    {{$corp->ContactPerson}} :
+                    <span class="name_and_phone">
+                        {{preg_replace("/^(\d{3})(\d{4})(\d{4})$/", "$1-$2-$3", $corp->ContactPhone)}}({{$corp->cphone_status}})
+                    </span>
+                    <input id="cphone" type="hidden" value="{{$corp->ContactPhone}}">
+                    <input id="cphone_status" type="hidden" value="{{$corp->cphone_status}}">
+                </td>
+            </tr>
+
             <tr>
                 <th scope="row">催报状态</th>
                     
@@ -59,6 +64,13 @@
                         <td style="color:red">{{$corp->Status}}</td>
                         @break                        
                 @endswitch
+            </tr>
+
+            <tr>
+                <th scope="row">年报状态</th>
+                <td>
+                    {{$corp->nian_bao_status}}
+                </td>
             </tr>
         </tbody>
     </table>

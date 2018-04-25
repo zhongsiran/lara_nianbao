@@ -8,28 +8,56 @@
             <td>操作</td>
         </thead>
         <tr>
-            <th>选择电话情况</th>
+            <th>选择登记电话情况</th>
             <td>
                 <div class="form-row">
                     <div class="col">
                         <label for="phone_status">{{phone_update_result}}</label>
                         <select @change="log_phone_status" v-model="phone_status" class="form-control" style="width:auto" id="phone_status">
                         <option></option>
+                        <option>请选择</option>                            
                         <option>空号</option>
                         <option>停机</option>
                         <option>无人接听</option>
-                        <option>有效电话</option>
+                        <option>表示已不为该企业工作</option>
+                        <option>表示与该企业从来没有关系</option>
+                        <option>提供了另一个联系电话</option>
+                        <option>承诺会报送</option>
+                        <option value="">其他</option>
                         </select>
                     </div>
-                    <div v-if="cphone!='无电话记录'" class="col">
+                    <div class="col">
+                        <label for="custom_phone_status">如果选择了其他，请手动填写并保存</label>
+                        <input class="form-control" type="text" name="custom_phone_status" v-model="phone_status">
+                        <input @click="log_phone_status" class="btn btn-primary" type="button" name="save_phone_status" value="保存">
+                    </div>
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr v-if="cphone!='无电话记录'" >
+            <th>选择联络员电话情况</th>
+            <td>
+                <div class="form-row">
+                    <div class="col">
                         <label for="cphone_status"> {{cphone_update_result}}</label>
                         <select @change="log_cphone_status" v-model="cphone_status" class="form-control" style="width:auto" id="cphone_status">
                         <option></option>
+                        <option>请选择</option>                            
                         <option>空号</option>
                         <option>停机</option>
                         <option>无人接听</option>
-                        <option>有效电话</option>
+                        <option>表示已不为该企业工作</option>
+                        <option>表示与该企业从来没有关系</option>
+                        <option>提供了另一个联系电话</option>
+                        <option>承诺会报送</option>
+                        <option value="">其他</option>
                         </select>
+                    </div>
+                    <div class="col">
+                        <label for="custom_cphone_status">如果选择了其他，请手动填写并保存</label>
+                        <input class="form-control" type="text" name="custom_cphone_status" v-model="cphone_status">
+                        <input @click="log_cphone_status" class="btn btn-primary" type="button" name="save_cphone_status" value="保存">
                     </div>
                 </div>
             </td>

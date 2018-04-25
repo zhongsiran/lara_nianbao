@@ -10396,14 +10396,10 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-section {
-  overflow: auto;
-}
-
 body {
   font-family: "Arial", "Microsoft YaHei", "\9ED1\4F53", "\5B8B\4F53", sans-serif;
   background-color: #444455;
-  padding-top: 60px;
+  padding-top: 80px;
 }
 
 #corp_info_title,
@@ -10415,7 +10411,7 @@ body {
 }
 
 .name_and_phone {
-  font-size: 1.5em;
+  font-size: 2.5em;
 }
 
 #input-table th {

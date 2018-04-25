@@ -13916,19 +13916,24 @@ var app = new Vue({
         // 取得联络员电话及情况
         cphone: $('#cphone').val(),
         cphone_status: $('#cphone_status').val(),
-        cphone_update_result: '选择联络电话情况',
+        cphone_update_result: '选择联络员电话情况',
         // 取得电话及情况
         phone: $('#phone').val(),
         phone_status: $('#phone_status').val(),
-        phone_update_result: '选择企业电话情况',
-        // ajax更新链接
-        update_url: document.head.querySelector('meta[name="update-link"]').content
+        phone_update_result: '选择企业登记电话情况',
+        // ajax接收URI
+        update_url: ''
     },
     methods: {
         set_status: function set_status(msg) {
             alert(msg);
         },
         log_phone_status: function log_phone_status() {
+            try {
+                this.update_url = document.head.querySelector('meta[name="update-link"]').content;
+            } catch (TypeError) {
+                console.log('Cannot find a meta with the name "update-link');
+            }
             var vm = this;
             axios.patch(vm.update_url, {
                 phone_status: vm.phone_status
@@ -13946,6 +13951,11 @@ var app = new Vue({
             });
         },
         log_cphone_status: function log_cphone_status() {
+            try {
+                this.update_url = document.head.querySelector('meta[name="update-link"]').content;
+            } catch (TypeError) {
+                console.log('Cannot find a meta with the name "update-link');
+            }
             var vm = this;
             axios.patch(vm.update_url, {
                 cphone_status: vm.cphone_status

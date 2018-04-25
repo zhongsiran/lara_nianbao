@@ -12,9 +12,13 @@ class CorpsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $corps = Corp::where('Status', '<>', ' ')
+        $div = $request->div;
+        $type = $request->identifier;
+
+        $corps = Corp::where('type', $type)
+                ->where('Division', $div)
                 ->get();
         return view('corp.index',['corps' => $corps]);
     }
