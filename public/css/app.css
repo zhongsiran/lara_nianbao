@@ -10396,6 +10396,10 @@ a.text-dark:focus {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+section {
+  overflow: auto;
+}
+
 body {
   font-family: "Arial", "Microsoft YaHei", "\9ED1\4F53", "\5B8B\4F53", sans-serif;
   background-color: #444455;

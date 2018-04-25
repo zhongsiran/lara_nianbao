@@ -1,1 +1,1 @@
-@extends('layouts._corp_info') 
+@include('layouts._corp_info') 

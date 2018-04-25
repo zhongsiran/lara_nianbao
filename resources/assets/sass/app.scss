@@ -8,9 +8,14 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+// Universal
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+section {
+    overflow: auto;
 }
 
 body {
@@ -19,7 +24,9 @@ body {
   padding-top: 60px;
 }
 
-#corp_info_title, #input_area_title {
+// Corpinfo page
+#corp_info_title,
+#input_area_title {
   align-items: center;
   color:white;
 }
@@ -28,6 +35,7 @@ body {
   font-size: 1.5em;
 }
 
+// input table
 #input-table {
   th {
     width:10%;

@@ -11,4 +11,5 @@
 |
 */
 
+Route::get('/', 'NianbaoController@entrance')->name('nianbao.entrance');
 Route::resource('corp', 'CorpsController')->only(['index', 'show', 'edit', 'update']);

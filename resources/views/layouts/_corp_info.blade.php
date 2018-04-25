@@ -1,5 +1,7 @@
-
 @extends('layouts._default', $corp)
+@section('update-link')
+<meta name="update-link" content="{{ route('corp.update', $corp->RegNum)}}">
+@endsection
 
 @section('content')
     @include('layouts._navi_bar')
