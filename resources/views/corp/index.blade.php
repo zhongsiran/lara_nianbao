@@ -1,4 +1,4 @@
-@extends('layouts._default', $corp) 
+@extends('layouts._default') 
 @section('content')
     @include('layouts._navi_bar')
     
@@ -29,4 +29,5 @@
         @endforeach
         </div>
     @endforeach
+    {!! $corps->appends(Request::except('page'))->links() !!}
 @endsection

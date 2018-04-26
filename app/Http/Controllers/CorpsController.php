@@ -14,12 +14,17 @@ class CorpsController extends Controller
      */
     public function index(Request $request)
     {
+
         $div = $request->div;
         $type = $request->identifier;
 
+        $request->session()->put('div', $div);
+        $request->session()->put('type', $type);
+
         $corps = Corp::where('type', $type)
                 ->where('Division', $div)
-                ->get();
+                // ->get()
+                ->paginate(20);
         return view('corp.index',['corps' => $corps]);
     }
 
