@@ -95,7 +95,7 @@
                 <input @click="set_status('已经通知')" class="btn btn-primary" type="button" value="已经通知">
                 <input @click="set_status('需要跟进')" class="btn btn-primary" type="button" value="需要跟进">
                 <input @click="set_status('无可救药')" class="btn btn-primary" type="button" value="无可救药">
-                <div id="setting_status_result"></div>
+                <p>{{setting_status_result}}</p>
             </td>
         </tr>
     </table>

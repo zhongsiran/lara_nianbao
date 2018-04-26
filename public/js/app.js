@@ -13926,11 +13926,26 @@ var app = new Vue({
         update_url: '',
         // 文字更新情况反馈
         phone_call_update_status: '预览结果',
-        bei_zhu_update_status: '预览结果'
+        bei_zhu_update_status: '预览结果',
+        // 简要状态更新反馈
+        setting_status_result: ''
     },
     methods: {
         set_status: function set_status(msg) {
-            alert(msg);
+            this.utils_get_update_link();
+            var vm = this;
+            axios.patch(vm.update_url, {
+                Status: msg
+            }).then(function (res) {
+                switch (res.data.result) {
+                    case 'success':
+                        vm.setting_status_result = '更新成功！！';
+                        break;
+                    default:
+                        vm.setting_status_result = '更新失败！！';
+                        break;
+                }
+            });
         },
         log_text: function log_text(column) {
             this.utils_get_update_link();
