@@ -13902,15 +13902,16 @@ window.Vue = __webpack_require__(36);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
 var app = new Vue({
     el: '#app',
     data: {
-        /* 电联记录 */
+
+        // 电联记录
         new_phone_call_text: "",
         old_phone_call_text: $('#old_phone_call_record').text(),
-        /* 备注记录 */
+        // 备注记录 
         new_bei_zhu_text: "",
         old_bei_zhu_text: $('#old_bei_zhu_record').text(),
         // 取得联络员电话及情况
@@ -13922,18 +13923,52 @@ var app = new Vue({
         phone_status: $('#phone_status').val(),
         phone_update_result: '选择企业登记电话情况',
         // ajax接收URI
-        update_url: ''
+        update_url: '',
+        // 文字更新情况反馈
+        phone_call_update_status: '预览结果',
+        bei_zhu_update_status: '预览结果'
     },
     methods: {
         set_status: function set_status(msg) {
             alert(msg);
         },
-        log_phone_status: function log_phone_status() {
-            try {
-                this.update_url = document.head.querySelector('meta[name="update-link"]').content;
-            } catch (TypeError) {
-                console.log('Cannot find a meta with the name "update-link');
+        log_text: function log_text(column) {
+            this.utils_get_update_link();
+            var vm = this;
+            switch (column) {
+                case 'PhoneCallRecord':
+                    axios.patch(vm.update_url, {
+                        PhoneCallRecord: vm.preview_new_phone_call
+                    }).then(function (res) {
+                        switch (res.data.result) {
+                            case 'success':
+                                vm.phone_call_update_status = '更新成功！！';
+                                break;
+                            default:
+                                vm.phone_call_update_status = '更新失败！！';
+                                break;
+                        }
+                    });
+                    break;
+                case 'InspectionStatus':
+                    console.log('ins');
+                    axios.patch(vm.update_url, {
+                        InspectionStatus: vm.preview_new_bei_zhu
+                    }).then(function (res) {
+                        switch (res.data.result) {
+                            case 'success':
+                                vm.bei_zhu_update_status = '更新成功！！';
+                                break;
+                            default:
+                                vm.bei_zhu_update_status = '更新失败！！';
+                                break;
+                        }
+                    });
+                    break;
             }
+        },
+        log_phone_status: function log_phone_status() {
+            this.utils_get_update_link();
             var vm = this;
             axios.patch(vm.update_url, {
                 phone_status: vm.phone_status
@@ -13951,11 +13986,7 @@ var app = new Vue({
             });
         },
         log_cphone_status: function log_cphone_status() {
-            try {
-                this.update_url = document.head.querySelector('meta[name="update-link"]').content;
-            } catch (TypeError) {
-                console.log('Cannot find a meta with the name "update-link');
-            }
+            this.utils_get_update_link();
             var vm = this;
             axios.patch(vm.update_url, {
                 cphone_status: vm.cphone_status
@@ -13983,7 +14014,7 @@ var app = new Vue({
             switch (type) {
                 case 'phone':
                     var phone_called = this.phone;
-                    var person_called = '企业登记电话';
+                    var person_called = '登记电话';
                     var called_status = this.phone_status;
                     break;
                 case 'cphone':
@@ -13995,21 +14026,47 @@ var app = new Vue({
                     console.log(type);
                     break;
             }
+            var designated_person = $('#designated_person').text();
+            var corp_name = $('#corp_name').text().trim();
 
-            var computed_new_called_text = ' 年月日,某人拨打' + person_called + phone_called + '，结果为' + called_status + ' |';
+            var computed_new_called_text = this.utils_chn_date() + ',' + designated_person + '拨打' + corp_name + person_called + phone_called + '，结果为' + called_status + ' |';
             // todo 补回原来的生成结果代码
             this.new_phone_call_text += computed_new_called_text;
+        },
+        utils_chn_date: function utils_chn_date() {
+            var mydate = new Date();
+            var year = mydate.getFullYear();
+            var month = mydate.getMonth() + 1;
+            var date = mydate.getDate();
+            var hours = mydate.getHours();
+            var minute = mydate.getMinutes();
+            var chn_starttime = year + '年' + month + '月' + date + '日' + hours + '时' + minute + '分';
+            return chn_starttime;
+        },
+        utils_get_update_link: function utils_get_update_link() {
+            try {
+                this.update_url = document.head.querySelector('meta[name="update-link"]').content;
+            } catch (TypeError) {
+                console.log('Cannot find a meta with the name "update-link');
+            }
         }
     },
     computed: {
         preview_new_phone_call: function preview_new_phone_call() {
-            return this.old_phone_call_text + this.new_phone_call_text;
+            if (!this.new_phone_call_text) {
+                return '无新增内容';
+            } else {
+                return this.old_phone_call_text + this.new_phone_call_text;
+            }
         },
         preview_new_bei_zhu: function preview_new_bei_zhu() {
-            return this.old_bei_zhu_text + this.new_bei_zhu_text;
+            if (!this.new_bei_zhu_text) {
+                return '无新增内容';
+            } else {
+                return this.old_bei_zhu_text + this.new_bei_zhu_text;
+            }
         }
     }
-
 });
 
 /***/ }),

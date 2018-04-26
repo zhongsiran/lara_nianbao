@@ -30,9 +30,14 @@ body {
   align-items: center;
   color:white;
 }
+#corp_info_table {
+  th {
+    width:3rem;
+  }
+}
 
 .name_and_phone {
-  font-size: 2.5em;
+  font-size: 2rem;
 }
 
 // input table

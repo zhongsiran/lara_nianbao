@@ -6,7 +6,7 @@
 @section('content')
     @include('layouts._navi_bar')
     <h4 style="margin:0" id="corp_info_title">企业信息</h4>
-    <table class="table table-dark table-striped table-bordered table-sm">
+    <table class="table table-dark table-striped table-bordered table-sm" id="corp_info_table">
         <thead>
             <th scope="col">项目</th>
             <th scope="col">数据</th>
@@ -19,12 +19,12 @@
 
             <tr>
                 <th scope="row">字号</th>
-                <td class="name_and_phone">{{$corp->CorpName}} </td>
+                <td class="name_and_phone" id="corp_name">{{$corp->CorpName}} </td>
             </tr>
 
             <tr>
                 <th scope="row">备注信息</th>
-                <td id="old_bei_zhu_record">{{$corp->InspectionRecord}}</td>
+                <td id="old_bei_zhu_record">{{$corp->InspectionStatus}}</td>
             </tr>
 
             <tr>
@@ -51,32 +51,21 @@
             </tr>
 
             <tr>
-                <th scope="row">催报状态</th>
+                <th scope="row">状态</th>
                     
                 @switch($corp->Status)
                     @case("已经通知")
-                        <td style="color:green">{{$corp->Status}}</td>
+                        <td style="color:green">催报状态：{{$corp->Status}}
                         @break
                     @case("需要跟进")
-                        <td style="color:yellow">{{$corp->Status}}</td>
+                        <td style="color:yellow">催报状态：{{$corp->Status}}
                         @break
                     @case("无可救药")
-                        <td style="color:red">{{$corp->Status}}</td>
+                        <td style="color:red">催报状态：{{$corp->Status}}
                         @break                        
                 @endswitch
-            </tr>
-
-            <tr>
-                <th scope="row">年报状态</th>
-                <td>
-                    {{$corp->nian_bao_status}}
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row">负责人员</th>
-                <td v-model="designated_person">
-                    {{$corp->designated_person}}
+                    |年报状态：{{$corp->nian_bao_status}}
+                    |负责人员：<span id="designated_person">{{$corp->designated_person}}</span>
                 </td>
             </tr>
         </tbody>

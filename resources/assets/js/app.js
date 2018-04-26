@@ -1,4 +1,4 @@
-import Axios from 'axios';
+import Axios from 'axios'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -6,9 +6,9 @@ import Axios from 'axios';
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
+require('./bootstrap')
 
-window.Vue = require('vue');
+window.Vue = require('vue')
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -16,7 +16,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue'));
+// Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
 const app = new Vue({
     el: '#app',
@@ -38,21 +38,55 @@ const app = new Vue({
         phone_update_result: '选择企业登记电话情况',
         // ajax接收URI
         update_url: '',
-        // 负责人员，适用于_corp_info
-        designated_person: ''
+        // 文字更新情况反馈
+        phone_call_update_status: '预览结果',
+        bei_zhu_update_status: '预览结果'
     },
     methods: {
         set_status: function (msg) {
-            alert(msg);
+            alert(msg)
+        },
+        log_text: function (column) {
+            this.utils_get_update_link()
+            var vm = this
+            switch (column) {
+                case 'PhoneCallRecord':
+                    axios.patch(vm.update_url, {
+                        PhoneCallRecord: vm.preview_new_phone_call
+                    })
+                    .then(function(res){
+                        switch (res.data.result) {
+                            case 'success':
+                                vm.phone_call_update_status = '更新成功！！'
+                                break
+                            default:
+                                vm.phone_call_update_status = '更新失败！！'
+                                break
+                        }
+                    })
+                    break
+                case 'InspectionStatus':
+                    console.log('ins')
+                    axios.patch(vm.update_url, {
+                        InspectionStatus: vm.preview_new_bei_zhu
+                    })
+                    .then(function(res){
+                        switch (res.data.result) {
+                            case 'success':
+                                vm.bei_zhu_update_status = '更新成功！！'
+                                break
+                            default:
+                                vm.bei_zhu_update_status = '更新失败！！'
+                                break
+                        }
+                    })
+                    break
+            }
+            
         },
         log_phone_status: function() {
-            try {
-                this.update_url = (document.head.querySelector('meta[name="update-link"]').content);
-            }
-            catch(TypeError) {
-                console.log('Cannot find a meta with the name "update-link');
-            }
-            var vm = this;
+            this.utils_get_update_link()
+            var vm = this
             axios.patch(vm.update_url,{
                 phone_status: vm.phone_status
             })
@@ -60,10 +94,10 @@ const app = new Vue({
                 switch (res.data.result) {
                     case 'success':
                         vm.phone_update_result = '更新成功！！'
-                        break;
+                        break
                     default:
                         vm.phone_update_result = '更新失败！！'
-                        break;
+                        break
                 }
             })
             .catch(function (error) {
@@ -71,13 +105,8 @@ const app = new Vue({
             })
         },
         log_cphone_status: function () {
-            try {
-                this.update_url = (document.head.querySelector('meta[name="update-link"]').content);
-            }
-            catch(TypeError) {
-                console.log('Cannot find a meta with the name "update-link');
-            }
-            var vm = this;
+            this.utils_get_update_link()
+            var vm = this
             axios.patch(vm.update_url, {
                 cphone_status: vm.cphone_status
             })
@@ -85,10 +114,10 @@ const app = new Vue({
                 switch (res.data.result) {
                     case 'success':
                         vm.cphone_update_result = '更新成功！！'
-                        break;
+                        break
                     default:
                         vm.cphone_update_result = '更新失败！！'
-                        break;
+                        break
                 }
             })
             .catch(function (error) {
@@ -106,41 +135,59 @@ const app = new Vue({
             switch (type) {
                 case 'phone':
                     var phone_called = this.phone
-                    var person_called = '企业登记电话'
+                    var person_called = '登记电话'
                     var called_status = this.phone_status
-                    break;
+                    break
                 case 'cphone':
                     var phone_called = this.cphone
                     var person_called = '联络员电话'
                     var called_status = this.cphone_status
-                    break;
+                    break
                 default:
-                    console.log(type);
-                    break;
+                    console.log(type)
+                    break
             }
+            var designated_person = $('#designated_person').text()
+            var corp_name = $('#corp_name').text().trim()
 
-            let computed_new_called_text = this.chn_date + this.designated_person + '拨打' + person_called + phone_called + '，结果为' + called_status + ' |'
+            let computed_new_called_text = this.utils_chn_date() + ',' + designated_person + '拨打' + corp_name + person_called + phone_called + '，结果为' + called_status + ' |'
             // todo 补回原来的生成结果代码
-            this.new_phone_call_text += computed_new_called_text;
+            this.new_phone_call_text += computed_new_called_text
+        },
+        utils_chn_date: function () {
+            var mydate = new Date()
+            var year = mydate.getFullYear()
+            var month = mydate.getMonth() + 1
+            var date = mydate.getDate()
+            var hours = mydate.getHours()
+            var minute = mydate.getMinutes()
+            var chn_starttime = year + '年' + month + '月' + date + '日' + hours + '时' + minute + '分'
+            return chn_starttime
+        },
+        utils_get_update_link: function () {
+            try {
+                this.update_url = (document.head.querySelector('meta[name="update-link"]').content)
+            }
+            catch(TypeError) {
+                console.log('Cannot find a meta with the name "update-link')
+            }
         }
     },
     computed: {
         preview_new_phone_call: function () {
-            return this.old_phone_call_text + this.new_phone_call_text
+            if (!this.new_phone_call_text) {
+                return '无新增内容'
+            } else {
+                return this.old_phone_call_text + this.new_phone_call_text    
+            }
+            
         },
         preview_new_bei_zhu: function () {
-            return this.old_bei_zhu_text + this.new_bei_zhu_text
+            if (!this.new_bei_zhu_text) {
+                return '无新增内容'
+            } else {
+                return this.old_bei_zhu_text + this.new_bei_zhu_text                
+            }
         },
-        chn_date: function () {
-            var mydate = new Date();
-            var year = mydate.getFullYear();
-            var month = mydate.getMonth() + 1;
-            var date = mydate.getDate();
-            var hours = mydate.getHours();
-            var minute = mydate.getMinutes();
-            var chn_starttime = year + '年' + month + '月' + date + '日' + hours + '时' + minute + '分';
-            return chn_starttime;
-        }
     }
-
-});
+})
