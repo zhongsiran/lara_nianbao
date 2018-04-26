@@ -68,7 +68,7 @@
                 <input @click="generate_call_text('phone')" class="btn btn-primary" type="button" value="生成登记电话情况">
                 <input @click="generate_call_text('cphone')" v-if="cphone!='无电话记录'" class="btn btn-primary" type="button" value="生成联络电话情况">
                 <!-- 下面判断输入框中是否空白,如非空白,则按键变为绿色,否则是灰色 -->
-                <input v-if="new_phone_call_text" class="btn btn-success" type="button" value="保存最新电联情况">
+                <input v-if="new_phone_call_text" @click="log_text('phone_call')" class="btn btn-success" type="button" value="保存最新电联情况">
                 <input v-else class="btn btn-secondary" type="button" value="保存最新电联情况">
                 <br />
                 <textarea class="form-control" v-model="new_phone_call_text" id="update_phone_call" style="margin:0.4rem 0 0 0">{{new_phone_call_text}}</textarea>
@@ -80,7 +80,7 @@
         <tr>
             <td>记录备注情况</td>
             <td>
-                <input v-if="new_bei_zhu_text" class="btn btn-success" type="button" value="保存最新备注情况">
+                <input v-if="new_bei_zhu_text" @click="log_text('bei_zhu')" class="btn btn-success" type="button" value="保存最新备注情况">
                 <input v-else class="btn btn-secondary" type="button" value="保存最新备注情况">
                 <br />
                 <textarea class="form-control" v-model="new_bei_zhu_text" id="update_bei_zhu" style="margin:0.4rem 0 0 0"></textarea>

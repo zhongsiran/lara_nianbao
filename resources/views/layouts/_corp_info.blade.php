@@ -72,6 +72,13 @@
                     {{$corp->nian_bao_status}}
                 </td>
             </tr>
+
+            <tr>
+                <th scope="row">负责人员</th>
+                <td v-model="designated_person">
+                    {{$corp->designated_person}}
+                </td>
+            </tr>
         </tbody>
     </table>
     @yield('input_area')

@@ -21,10 +21,11 @@ window.Vue = require('vue');
 const app = new Vue({
     el: '#app',
     data: {
-        /* 电联记录 */
+
+        // 电联记录
         new_phone_call_text: "", 
         old_phone_call_text: $('#old_phone_call_record').text(),
-        /* 备注记录 */
+        // 备注记录 
         new_bei_zhu_text: "",
         old_bei_zhu_text: $('#old_bei_zhu_record').text(),
         // 取得联络员电话及情况
@@ -36,7 +37,9 @@ const app = new Vue({
         phone_status: $('#phone_status').val(),
         phone_update_result: '选择企业登记电话情况',
         // ajax接收URI
-        update_url: ''
+        update_url: '',
+        // 负责人员，适用于_corp_info
+        designated_person: ''
     },
     methods: {
         set_status: function (msg) {
@@ -115,8 +118,8 @@ const app = new Vue({
                     console.log(type);
                     break;
             }
-            
-            let computed_new_called_text = ' 年月日,某人拨打' + person_called + phone_called + '，结果为' + called_status + ' |'
+
+            let computed_new_called_text = this.chn_date + this.designated_person + '拨打' + person_called + phone_called + '，结果为' + called_status + ' |'
             // todo 补回原来的生成结果代码
             this.new_phone_call_text += computed_new_called_text;
         }
@@ -127,6 +130,16 @@ const app = new Vue({
         },
         preview_new_bei_zhu: function () {
             return this.old_bei_zhu_text + this.new_bei_zhu_text
+        },
+        chn_date: function () {
+            var mydate = new Date();
+            var year = mydate.getFullYear();
+            var month = mydate.getMonth() + 1;
+            var date = mydate.getDate();
+            var hours = mydate.getHours();
+            var minute = mydate.getMinutes();
+            var chn_starttime = year + '年' + month + '月' + date + '日' + hours + '时' + minute + '分';
+            return chn_starttime;
         }
     }
 
