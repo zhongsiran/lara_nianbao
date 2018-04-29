@@ -2,7 +2,7 @@
 @section('content')
     @include('layouts._navi_bar')
     
-    @foreach ($corps->chunk(4) as $chunk)
+    @foreach ($corps->chunk(2) as $chunk)
         <div class="card-deck">
         @foreach ($chunk as $corp)
             <div class="card">
@@ -19,9 +19,9 @@
                             <h5>
                             @break
                     @endswitch
-                    {{$corp->Status}}</h5>
+                    {{$corp->Status}} - {{$corp->nian_bao_status}}</h5>
                     <p class="card-text">{{$corp->RegNum}}</p>
-                    <p class="card-text"><small class="text-muted">{{$corp->PhoneCallRecord}}</small></p>
+                    {{--  <p class="card-text"><small class="text-muted">{{$corp->PhoneCallRecord}}</small></p>  --}}
                     <a class="btn btn-primary" href="{{route('corp.edit', $corp->RegNum)}}">开始录入</a>
                     <a class="btn btn-info" href="{{route('corp.show', $corp->RegNum)}}">查看详情</a>
                 </div>
