@@ -2,14 +2,36 @@
 @extends('layouts._default') 
 @section('content')
     @include('layouts._navi_bar')
+<<<<<<< HEAD
     {{--  chunk()函数按需要分为子数组  --}}
     @foreach ($corps->chunk(2) as $chunk)
+=======
+    
+    <!-- 用CHUNK（）每两个分一组 -->
+    @foreach ($corps->chunk(1) as $chunk)
+>>>>>>> 完善列表页，开始增加统计页
         <div class="card-deck">
+        <!-- 使用FOREACH遍历 -->
         @foreach ($chunk as $corp)
-            <div class="card">
+        <!-- SWITCH 年报状态，已公示的变为透明 -->
+            @switch($corp->nian_bao_status)
+                @case("未填报")
+                    <div class="card">
+                    @break
+                @case('已公示')
+                    <div class="card" style="opacity: 0.2;">
+                    @break
+                @default
+                    <div class="card">
+            @endswitch
                 <div class="card-body">
+<<<<<<< HEAD
                     <h5 class="card-title">{{$corp->CorpName}}</h5>
                     {{--  根据不同的Status使用不同的颜色  --}}
+=======
+                    <h5 class="card-title">{{$corp->div_corp_index}}-{{$corp->CorpName}}</h5>
+                    {{-- SWITCH 通知情况以决定颜色 --}}
+>>>>>>> 完善列表页，开始增加统计页
                     @switch($corp->Status) 
                         @case('已经通知')
                             <h5 style="color:green">
@@ -24,9 +46,9 @@
                     {{--  催报情况和年报情况  --}}
                     {{$corp->Status}} - {{$corp->nian_bao_status}}</h5>
                     <p class="card-text">{{$corp->RegNum}}</p>
-                    {{--  <p class="card-text"><small class="text-muted">{{$corp->PhoneCallRecord}}</small></p>  --}}
-                    <a class="btn btn-primary" href="{{route('corp.edit', $corp->RegNum)}}">开始录入</a>
-                    <a class="btn btn-info" href="{{route('corp.show', $corp->RegNum)}}">查看详情</a>
+                     <p class="card-text"><small class="text-muted">{{$corp->PhoneCallRecord}}</small></p> 
+                    <a class="btn btn-primary" href="{{route('corp.edit', $corp->RegNum)}}">录入</a>
+                    <a class="btn btn-info" href="{{route('corp.show', $corp->RegNum)}}">查看</a>
                 </div>
             </div>
         @endforeach

@@ -66,7 +66,7 @@
                     <div class="jumbotron col-md-6 text-center">
                         <h1>进度统计</h1>
                         <p>查看年报进度统计情况</p>
-                        <p><a class="btn btn-primary btn-lg" href="status.php" role="button">点击进入</a></p>
+                        <p><a class="btn btn-primary btn-lg" href="status" role="button">点击进入</a></p>
                     </div>
                 </div>
             </div>

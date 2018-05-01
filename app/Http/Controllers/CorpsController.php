@@ -32,8 +32,13 @@ class CorpsController extends Controller
         // 数据库操作,根据 type 和 div 取得数据,并用paginate()分页
         $corps = Corp::where('type', $type)
                 ->where('Division', $div)
+<<<<<<< HEAD
                 ->paginate(20);
         // 构造data,直接使用取得的 $corps, 并包含其他参数用于页面输出
+=======
+                ->paginate(10);
+
+>>>>>>> 完善列表页，开始增加统计页
         $data = ['corps' => $corps, 'div'=>$div, 'type'=>$type, 'page'=>$page];
         // 输出到blade模版 corp中的index模版
         return view('corp.index', $data);
@@ -138,11 +143,12 @@ class CorpsController extends Controller
             ->orderBy('div_corp_index')
             ->get();
 
+        /*判断是否第一户，是就返回最后一户，否则返回上一户*/
         if ($corp->div_corp_index === 1) {
-            // 最后一户
+            // 第一户
             $prev_corp = Corp::where('Division', $division)
                 ->where('type', $type)
-                ->where('div_corp_index', $list_with_type_div->count())
+                ->where('div_corp_index', $list_with_type_div->count())  // 使用COUNT得到本企业所在列表最大的序号
                 ->get();
         } else {
             $prev_corp = Corp::where('Division', $division)
