@@ -34,8 +34,8 @@
                         <p>进入模块录入企业联系情况</p>
                         <form method="GET" action="{{route('corp.index')}}">
                             <div class="form-group">
-                                <label for="identifier">选择名单：</label>
-                                <select name="identifier" class="form-control">
+                                <label for="type">选择名单：</label>
+                                <select name="type" class="form-control">
                                     <option value="17年新办">1.2017年新增企业</option>
                                     <option value="一般企业">2.2016年度正常企业</option>
                                     <option value="16年未报">3.2016年度未报企业</option>

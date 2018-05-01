@@ -12,4 +12,6 @@
 */
 
 Route::get('/', 'NianbaoController@entrance')->name('nianbao.entrance');
+Route::get('next/{id}', 'CorpsController@next')->name('corp.next');
+Route::get('prev/{id}', 'CorpsController@prev')->name('corp.prev');
 Route::resource('corp', 'CorpsController')->only(['index', 'show', 'edit', 'update']);

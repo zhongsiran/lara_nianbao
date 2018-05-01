@@ -5,7 +5,7 @@
 
 @section('content')
     @include('layouts._navi_bar')
-    <h4 style="margin:0" id="corp_info_title">企业信息</h4>
+    <h4 style="margin:0" id="corp_info_title">企业信息 - {{$corp->Division}} - {{$corp->div_corp_index}}  </h4>
     <table class="table table-dark table-striped table-bordered table-sm" id="corp_info_table">
         <thead>
             <th scope="col">项目</th>
