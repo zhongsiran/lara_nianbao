@@ -14,19 +14,28 @@ class CorpsController extends Controller
      */
     public function index(Request $request)
     {
+        /** 从REQUEST里面取得参数,如果没有就从SESSION里面取得
+         * $type    企业类型
+         * $div     片区
+         * $page    页码
+         */
+        
         $type = $request->type ?? session('type');
         $div = $request->div ?? session('div');
         $page = $request->page ?? session('page') ?? '';
         
+        // 将新取得的参数存入SESSION
         $request->session()->put('type', $type);
         $request->session()->put('div', $div);
         $request->session()->put('page', $page);
 
+        // 数据库操作,根据 type 和 div 取得数据,并用paginate()分页
         $corps = Corp::where('type', $type)
                 ->where('Division', $div)
                 ->paginate(20);
-
+        // 构造data,直接使用取得的 $corps, 并包含其他参数用于页面输出
         $data = ['corps' => $corps, 'div'=>$div, 'type'=>$type, 'page'=>$page];
+        // 输出到blade模版 corp中的index模版
         return view('corp.index', $data);
     }
 

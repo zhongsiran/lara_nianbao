@@ -1,13 +1,14 @@
 @extends('layouts._default') 
 @section('content')
     @include('layouts._navi_bar')
-    
+    {{--  chunk()函数按需要分为子数组  --}}
     @foreach ($corps->chunk(2) as $chunk)
         <div class="card-deck">
         @foreach ($chunk as $corp)
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{$corp->CorpName}}</h5>
+                    {{--  根据不同的Status使用不同的颜色  --}}
                     @switch($corp->Status) 
                         @case('已经通知')
                             <h5 style="color:green">
@@ -19,6 +20,7 @@
                             <h5>
                             @break
                     @endswitch
+                    {{--  催报情况和年报情况  --}}
                     {{$corp->Status}} - {{$corp->nian_bao_status}}</h5>
                     <p class="card-text">{{$corp->RegNum}}</p>
                     {{--  <p class="card-text"><small class="text-muted">{{$corp->PhoneCallRecord}}</small></p>  --}}
