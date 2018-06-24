@@ -1,3 +1,4 @@
+{{--  corp.index 是列出业户名单的页面,显示简要的业户信息.提供进入填报或继进行查询情况的按键  --}}
 @extends('layouts._default') 
 @section('content')
     @include('layouts._navi_bar')

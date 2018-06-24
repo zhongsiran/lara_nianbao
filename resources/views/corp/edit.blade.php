@@ -1,3 +1,4 @@
+{{--  corp.edit 是在 corp.show基础上提供输入情况的区域的页面,结合VUE提供动态内容  --}}
 @extends('layouts._corp_info')
 @section('input_area')
     @verbatim

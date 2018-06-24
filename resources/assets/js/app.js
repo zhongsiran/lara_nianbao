@@ -36,7 +36,7 @@ const app = new Vue({
         phone: $('#phone').val(),
         phone_status: $('#phone_status').val(),
         phone_update_result: '选择企业登记电话情况',
-        // ajax接收URI
+        // ajax接收URI,在meta中设定
         update_url: '',
         // 文字更新情况反馈
         phone_call_update_status: '预览结果',

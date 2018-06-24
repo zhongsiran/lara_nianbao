@@ -1,3 +1,4 @@
+{{--  企业详情显示页面的部分  --}}
 @extends('layouts._default', $corp)
 @section('update-link')
 <meta name="update-link" content="{{ route('corp.update', $corp->RegNum)}}">
