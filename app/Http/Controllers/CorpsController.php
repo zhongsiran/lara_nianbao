@@ -32,13 +32,8 @@ class CorpsController extends Controller
         // 数据库操作,根据 type 和 div 取得数据,并用paginate()分页
         $corps = Corp::where('type', $type)
                 ->where('Division', $div)
-<<<<<<< HEAD
-                ->paginate(20);
-        // 构造data,直接使用取得的 $corps, 并包含其他参数用于页面输出
-=======
                 ->paginate(10);
-
->>>>>>> 完善列表页，开始增加统计页
+                
         $data = ['corps' => $corps, 'div'=>$div, 'type'=>$type, 'page'=>$page];
         // 输出到blade模版 corp中的index模版
         return view('corp.index', $data);

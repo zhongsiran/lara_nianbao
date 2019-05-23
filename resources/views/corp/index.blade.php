@@ -2,14 +2,11 @@
 @extends('layouts._default') 
 @section('content')
     @include('layouts._navi_bar')
-<<<<<<< HEAD
-    {{--  chunk()函数按需要分为子数组  --}}
-    @foreach ($corps->chunk(2) as $chunk)
-=======
+
     
-    <!-- 用CHUNK（）每两个分一组 -->
+    <!-- 用CHUNK（）每x个分一组 -->
     @foreach ($corps->chunk(1) as $chunk)
->>>>>>> 完善列表页，开始增加统计页
+
         <div class="card-deck">
         <!-- 使用FOREACH遍历 -->
         @foreach ($chunk as $corp)
@@ -25,13 +22,10 @@
                     <div class="card">
             @endswitch
                 <div class="card-body">
-<<<<<<< HEAD
-                    <h5 class="card-title">{{$corp->CorpName}}</h5>
-                    {{--  根据不同的Status使用不同的颜色  --}}
-=======
+
                     <h5 class="card-title">{{$corp->div_corp_index}}-{{$corp->CorpName}}</h5>
                     {{-- SWITCH 通知情况以决定颜色 --}}
->>>>>>> 完善列表页，开始增加统计页
+
                     @switch($corp->Status) 
                         @case('已经通知')
                             <h5 style="color:green">
