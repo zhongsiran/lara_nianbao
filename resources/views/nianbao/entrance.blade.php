@@ -11,7 +11,7 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
         <div class="container">
             <div class="col-md-offset-1 col-md-10">
-                <a href="/" id="logo">狮岭所年报工作系统</a>
+                <a href="/" id="logo">合益市场监管所年报工作系统</a>
             </div>
         </div>
     </header>
@@ -20,11 +20,7 @@
         <div class="row">
             <div class="container">
                 <div class="jumbotron col-md-12 text-center" style="background-color: white;">
-                    <div id="badges" class="weui-flex justify">
-                        <img src="/Icons/AICBADGE.jpg" class="weui-flex-item">
-                        <img src="/Icons/QUABADGE%20%281%29.jpg" class="weui-flex-item">
-                    </div>
-                    <h1>狮岭所年报工作系统</h1>
+                    <h1>合益市场监管所年报工作系统</h1>
                 </div>
             </div>
             <div class="row">
@@ -76,7 +72,7 @@
             <footer class="footer">
                 <small class="slogon">
                     <a href="#">
-                        狮岭监管所制作 
+                        反馈建议请联系钟思燃（661668、13922471668）
                     </a>
                 </small>
             </footer>
