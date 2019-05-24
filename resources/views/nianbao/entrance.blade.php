@@ -32,28 +32,24 @@
                             <div class="form-group">
                                 <label for="type">选择名单：</label>
                                 <select name="type" class="form-control">
-                                    <option value="17年新办">1.2017年新增企业</option>
-                                    <option value="一般企业">2.2016年度正常企业</option>
-                                    <option value="16年未报">3.2016年度未报企业</option>
+                                    <option value="新办">1.新增企业</option>
+                                    <option value="一般企业">2.去年正常企业</option>
+                                    <option value="去年未报">3.去年未报企业</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="div">选择片区：</label>
                                 <select name="div" class="form-control">
-                                    <option value="中心一区">1.中心1区</option>
-                                    <option value="中心二区">2.中心2区</option>
-                                    <option value="中心三区">3.中心3区</option>
-                                    <option value="中心四区">4.中心4区</option>
-                                    <option value="中心五区">5.中心5区</option>
-                                    <option value="中心六区">6.中心6区</option>
-                                    <option value="西一片区">7.西1片区</option>
-                                    <option value="西二片区">8.西2片区</option>
-                                    <option value="西三片区">9.西3片区</option>
-                                    <option value="西四片区">10.西4片区</option>
-                                    <option value="北一片区">11.北1片区</option>
-                                    <option value="北二片区">12.北2片区</option>
-                                    <option value="北三片区">13.北3片区</option>
-                                    <option value="待处理企业片区">14.待处理片区</option>
+                                    <option value="A1">1.A1</option>
+                                    <option value="A2">2.A2</option>
+                                    <option value="B1">3.B1</option>
+                                    <option value="B2">4.B2</option>
+                                    <option value="B3">5.B3</option>
+                                    <option value="C1">6.C1</option>
+                                    <option value="C2">7.C2</option>
+                                    <option value="C3">8.C3</option>
+                                    <option value="C4">9.C4</option>
+                                    <option value="进出口">10.进出口</option>
                                 </select>
                             </div>
                             <input type="submit" class="btn btn-primary btn-lg" role="button" value="点击进入">

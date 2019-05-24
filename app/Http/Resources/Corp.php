@@ -6,7 +6,7 @@ use Illuminate\Http\Resources\Json\ResourceCollection;
 
 class Corp extends ResourceCollection
 {
-    protected $table = 'shiling_nianbao_corp';
+    protected $table = '2019_nianbao_corp';
     protected $primaryKey = 'RegNum';
     public $incrementing = false;
     protected $keyType = 'string';

@@ -13,7 +13,7 @@ class AddUpdatedAtColumn extends Migration
      */
     public function up()
     {
-        Schema::table('shiling_nianbao_corp', function (Blueprint $table) {
+        Schema::table('2019_nianbao_corp', function (Blueprint $table) {
             $table->timestamp('updated_at');
         });
     }
@@ -25,7 +25,7 @@ class AddUpdatedAtColumn extends Migration
      */
     public function down()
     {
-        Schema::table('shiling_nianbao_corp', function (Blueprint $table) {
+        Schema::table('2019_nianbao_corp', function (Blueprint $table) {
              $table->dropColumn('updated_at');
         });
     }

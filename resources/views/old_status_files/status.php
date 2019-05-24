@@ -4,12 +4,12 @@ header("Content-type:text/html;charset=utf-8;");
 require ('corpclass.php');
 $division = "合益所";
 $tablename = "2019年度年报进度统计";
-$corp = new CorpForNianBao("shiling_nianbao_corp");
-$new_corp_status = $corp->dif_type_corp_status('17年新办');
-$normal_corp_status = $corp->dif_type_corp_status('一般企业');
-// $zongbiao_status = $corp->dif_type_corp_status('总表');
-$custom_corp_status = $corp->custom_search_status('17年新办');
-// $all_person_ststus = $corp->dif_type_corp_status('各人情况');
+$corp = new CorpForNianBao("2019_nianbao_corp");
+$new_corp_status = $corp->new_corp_status();
+$normal_corp_status = $corp->normal_corp_status();
+$zongbiao_status = $corp->dif_type_corp_status('总表');
+// $custom_corp_status = $corp->custom_search_status('17年新办');
+$all_person_ststus = $corp->dif_type_corp_status('各人情况');
 
 $new_corp_phone_call_status = $corp->new_corp_phone_call_status();
 $normal_corp_phone_call_status = $corp->normal_corp_phone_call_status();
@@ -31,7 +31,7 @@ echo <<< EOT
 <script src="/jqueryui/jquery-ui.js"></script>
 </head>
 
-<body style="background:green">
+<body style="background:grey">
 
 <table align='center' border='1' width='1280' >
 <caption><h1>$division $tablename</h1></caption>
@@ -45,37 +45,25 @@ echo <<< EOT
 			<th>总数</th>
 			<th style="">未报数量</th>
 			<th style="background-color:#00ff00">已报数量</th>
-			<th> 一月 </th>
-			<th> 二月 </th>
-			<th> 三月 </th>
-			<th> 四月 </th>
-			<th> 五月 </th>
-			<th> 六月 </th>
 			<th style="background-color:#F3F781">年报率</th>
 			</tr>
-			zongbiao_status
+			$zongbiao_status
 		</table>
 		</div>
 		<a href="/" class="ui-button ui-widget ui-corner-all">返回入口</a>
 	</td>
 	<td align="center" class="main-frame">
-		<div><h1>全所人员年报率明细表</h1></div>
+		<div><h1>各片区年报率明细表</h1></div>
 		<div>
 		<table class="sub-table" border='1' align="center">
 			<tr>
-			<th>负责人员</th>
+			<th>片区</th>
 			<th>总数</th>
 			<th style="">未报数量</th>
 			<th style="background-color:#00ff00">已报数量</th>
-			<th> 一月 </th>
-			<th> 二月 </th>
-			<th> 三月 </th>
-			<th> 四月 </th>
-			<th> 五月 </th>
-			<th> 六月 </th>
 			<th style="background-color:#F3F781">年报率</th>
 			</tr>
-			all_person_ststus
+			$all_person_ststus
 		</table>
 		<p>
 		</p>
@@ -91,16 +79,10 @@ echo <<< EOT
 		<div>
 		<table class="sub-table" border='1' align="center">
 			<tr>
-			<th>负责人员</th>
+			<th>片区</th>
 			<th>总数</th>
 			<th style="">未报数量</th>
 			<th style="background-color:#00ff00">已报数量</th>
-			<th> 一月 </th>
-			<th> 二月 </th>
-			<th> 三月 </th>
-			<th> 四月 </th>
-			<th> 五月 </th>
-			<th> 六月 </th>
 			<th style="background-color:#F3F781">年报率</th>
 			</tr>
 			$new_corp_status
@@ -113,16 +95,10 @@ echo <<< EOT
 		<div>
 		<table class="sub-table" border='1' align="center">
 			<tr>
-			<th>负责人员</th>
+			<th>片区</th>
 			<th>总数</th>
 			<th style="">未报数量</th>
 			<th style="background-color:#00ff00">已报数量</th>
-			<th> 一月 </th>
-			<th> 二月 </th>
-			<th> 三月 </th>
-			<th> 四月 </th>
-			<th> 五月 </th>
-			<th> 六月 </th>
 			<th style="background-color:#F3F781">年报率</th>
 			</tr>
 			$normal_corp_status
@@ -139,7 +115,7 @@ echo <<< EOT
 		<div>
 		<table class="sub-table" border='1' align="center">
 			<tr>
-			<th>拨打电话人员</th>
+			<th>片区</th>
 			<th style="">负责数量</th>
 			<th style="background-color:#00ff00">已打数量</th>
 			<th style="background-color:#F3F781">完成率</th>
@@ -157,7 +133,7 @@ echo <<< EOT
 		<div>
 		<table class="sub-table" border='1' align="center">
 			<tr>
-			<th>拨打电话人员</th>
+			<th>片区</th>
 			<th style="">负责数量</th>
 			<th style="background-color:#00ff00">已打数量</th>
 			<th style="background-color:#F3F781">完成率</th>
