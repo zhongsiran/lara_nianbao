@@ -28,10 +28,13 @@
 
                     @switch($corp->Status) 
                         @case('已经通知')
-                            <h5 style="color:green">
+                            <h5 class="bg-success text-white">
                             @break
                         @case('无可救药')
-                            <h5 style="color:red">
+                            <h5 class="bg-danger text-white">
+                            @break
+                        @case('需要跟进')
+                            <h5 class="bg-warning text-dark">
                             @break
                         @default
                             <h5>
@@ -40,7 +43,8 @@
                     {{--  催报情况和年报情况  --}}
                     {{$corp->Status}} - {{$corp->nian_bao_status}}</h5>
                     <p class="card-text">{{$corp->RegNum}}</p>
-                     <p class="card-text"><small class="text-muted">{{$corp->PhoneCallRecord}}</small></p> 
+                    <p class="card-text">{{$corp->Addr}}</p>
+                    <p class="card-text"><small class="text-muted">{{$corp->PhoneCallRecord}}</small></p> 
                     <a class="btn btn-primary" href="{{route('corp.edit', $corp->RegNum)}}">录入</a>
                     <a class="btn btn-info" href="{{route('corp.show', $corp->RegNum)}}">查看</a>
                 </div>
