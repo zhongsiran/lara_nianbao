@@ -98,7 +98,8 @@ class CorpsController extends Controller
         }
         // return redirect(route('corp.edit', $id));
     }
-
+    
+    // 要求div corp index为连续的
     public function next(Request $request, $id)
     {
         $corp = Corp::find($id);
