@@ -13922,7 +13922,7 @@ var app = new Vue({
         phone: $('#phone').val(),
         phone_status: $('#phone_status').val(),
         phone_update_result: '选择企业登记电话情况',
-        // ajax接收URI
+        // ajax接收URI,在meta中设定
         update_url: '',
         // 文字更新情况反馈
         phone_call_update_status: '预览结果',
@@ -14044,7 +14044,9 @@ var app = new Vue({
             var designated_person = $('#designated_person').text();
             var corp_name = $('#corp_name').text().trim();
 
-            var computed_new_called_text = this.utils_chn_date() + ',' + designated_person + '拨打' + corp_name + person_called + phone_called + '，结果为' + called_status + ' |';
+            // let computed_new_called_text = this.utils_chn_date() + ',' + designated_person + '拨打' + corp_name + person_called + phone_called + '，结果为' + called_status + ' |'
+            var computed_new_called_text = this.utils_chn_date() + '拨打' + person_called + phone_called + ':' + called_status + ' |';
+
             // todo 补回原来的生成结果代码
             this.new_phone_call_text += computed_new_called_text;
         },

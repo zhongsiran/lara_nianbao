@@ -166,7 +166,9 @@ const app = new Vue({
             var designated_person = $('#designated_person').text()
             var corp_name = $('#corp_name').text().trim()
 
-            let computed_new_called_text = this.utils_chn_date() + ',' + designated_person + '拨打' + corp_name + person_called + phone_called + '，结果为' + called_status + ' |'
+            // let computed_new_called_text = this.utils_chn_date() + ',' + designated_person + '拨打' + corp_name + person_called + phone_called + '，结果为' + called_status + ' |'
+            let computed_new_called_text = this.utils_chn_date() + '拨打' + person_called + phone_called + ':' + called_status + ' |'
+
             // todo 补回原来的生成结果代码
             this.new_phone_call_text += computed_new_called_text
         },

@@ -20,8 +20,13 @@
 
             <tr>
                 <th scope="row">字号</th>
-                <td class="name_and_phone" id="corp_name">{{$corp->CorpName}} </td>
+                <td class="name_and_phone" id="corp_name">{{$corp->CorpName}}({{$corp->nian_bao_status}}) </td>
             </tr>
+
+            <tr>
+                <th scope="row">地址</th>
+                <td id="corp_address">{{$corp->Addr}} </td>
+            </tr>            
 
             <tr>
                 <th scope="row">备注信息</th>
