@@ -34,7 +34,7 @@ class CorpsController extends Controller
                 ->where('Division', $div)
                 ->paginate(10);
                 
-        $data = ['corps' => $corps, 'div'=>$div, 'type'=>$type, 'page'=>$page];
+        $data = ['corps'=>$corps, 'div'=>$div, 'type'=>$type, 'page'=>$page, 'page_type'=>'corp_index'];
         // 输出到blade模版 corp中的index模版
         return view('corp.index', $data);
     }
@@ -53,7 +53,8 @@ class CorpsController extends Controller
         $type = session('type') ?? $corp->type;
         $div = session('div') ?? $corp->div;
         $page = session('page') ?? '';
-        $data = ['corp' => $corp, 'div'=>$div, 'type'=>$type, 'page'=>$page];
+        $data = ['corp'=>$corp, 'div'=>$div, 'type'=>$type, 'page'=>$page, 'page_type'=>'corp_detail'];
+
         return view('corp.show', $data);
     }
     
@@ -70,7 +71,7 @@ class CorpsController extends Controller
         $type = session('type') ?? $corp->type;
         $div = session('div') ?? $corp->div;
         $page = session('page') ?? '';
-        $data = ['corp' => $corp, 'div'=>$div, 'type'=>$type, 'page'=>$page];
+        $data = ['corp'=>$corp, 'div'=>$div, 'type'=>$type, 'page'=>$page, 'page_type'=>'corp_detail'];
 
         return view('corp.edit', $data);
     }

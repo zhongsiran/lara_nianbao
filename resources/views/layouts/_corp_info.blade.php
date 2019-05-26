@@ -34,8 +34,13 @@
             </tr>
 
             <tr>
-                <th scope="row">电话记录</th>
-                <td id="old_phone_call_record">{{$corp->PhoneCallRecord}}</td>
+                <th scope="row">往年电话记录</th>
+                <td id="phone_call_record_of_history">{{$corp->PhoneCallHistoryRecord}}</td>
+            </tr>
+
+            <tr>
+                <th scope="row">当年电话记录</th>
+                <td id="phone_call_record_of_the_year">{{$corp->PhoneCallRecord}}</td>
             </tr>
 
             <tr>
@@ -59,19 +64,18 @@
             <tr>
                 <th scope="row">状态</th>
                     
-                @switch($corp->Status)
+                @switch ($corp->Status)
                     @case("已经通知")
-                        <td style="color:green">催报状态：{{$corp->Status}}
+                        <td class="bg-success text-white">催报状态：{{$corp->Status}}
                         @break
                     @case("需要跟进")
-                        <td style="color:yellow">催报状态：{{$corp->Status}}
+                        <td class="bg-warning text-dark">催报状态：{{$corp->Status}}
                         @break
                     @case("无可救药")
-                        <td style="color:red">催报状态：{{$corp->Status}}
+                        <td class="bg-danger text-white">催报状态：{{$corp->Status}}
                         @break                        
                 @endswitch
-                    |年报状态：{{$corp->nian_bao_status}}
-                    |负责人员：<span id="designated_person">{{$corp->designated_person}}</span>
+
                 </td>
             </tr>
         </tbody>

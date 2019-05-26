@@ -23,8 +23,9 @@ const app = new Vue({
     data: {
 
         // 电联记录
-        new_phone_call_text: "", 
-        old_phone_call_text: $('#old_phone_call_record').text(),
+        // new_phone_call_text: "", 
+        new_phone_call_text: $('#phone_call_record_of_the_year').text(),
+        // old_phone_call_text: $('#old_phone_call_record').text(),
         // 备注记录 
         new_bei_zhu_text: "",
         old_bei_zhu_text: $('#old_bei_zhu_record').text(),
@@ -196,7 +197,8 @@ const app = new Vue({
             if (!this.new_phone_call_text) {
                 return '无新增内容'
             } else {
-                return this.old_phone_call_text + this.new_phone_call_text    
+                // return this.old_phone_call_text + this.new_phone_call_text    
+                return this.new_phone_call_text    
             }
             
         },

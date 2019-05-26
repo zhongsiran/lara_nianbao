@@ -14,15 +14,15 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a class="dropdown-item" href="{{route('nianbao.entrance')}}">返回首页 <span class="sr-only">(current)</span></a>
-            @if (isset($page))
-
-                <a class="dropdown-item" href="{{route('corp.index',['type'=>$type, 'div'=>$div, 'page'=>$page])}}">返回名单列表</a>              
-
-            @else
-
-                <a class="dropdown-item" href="{{route('corp.index',['type'=>$type, 'div'=>$div])}}">返回名单列表</a>
-
-            @endif
+            
+                    @if (isset($page_type) and $page_type == 'corp_detail')
+                    {{--  根据页面类型决定是否显示“返回名单按钮”  --}}
+                        @if (isset($page))
+                            <a class="dropdown-item" href="{{route('corp.index',['type'=>$type, 'div'=>$div, 'page'=>$page])}}">返回名单列表</a>
+                        @else
+                            <a class="dropdown-item" href="{{route('corp.index',['type'=>$type, 'div'=>$div])}}">返回名单列表</a>
+                        @endif
+                    @endif
                 </div>
             </li>
             @if (isset($corp))
