@@ -19,7 +19,9 @@
                         <option>请选择</option>                            
                         <option>空号</option>
                         <option>停机</option>
+                        <option>关机</option>
                         <option>无人接听</option>
+                        <option>无故挂电话</option>
                         <option>表示已不为该企业工作</option>
                         <option>表示与该企业从来没有关系</option>
                         <option>提供了另一个联系电话</option>
@@ -47,7 +49,9 @@
                         <option>请选择</option>                            
                         <option>空号</option>
                         <option>停机</option>
+                        <option>关机</option>
                         <option>无人接听</option>
+                        <option>无故挂电话</option>
                         <option>表示已不为该企业工作</option>
                         <option>表示与该企业从来没有关系</option>
                         <option>提供了另一个联系电话</option>
