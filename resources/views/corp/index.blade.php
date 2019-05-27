@@ -44,8 +44,8 @@
                     {{$corp->Status}} - {{$corp->nian_bao_status}}</h5>
                     <p class="card-text">{{$corp->RegNum}}</p>
                     <p class="card-text">{{$corp->Addr}}</p>
-                    <p class="card-text"><small class="text-muted">{{$corp->PhoneCallHistoryRecord}}</small></p> 
-                    <p class="card-text"><small class="text-muted">{{$corp->PhoneCallRecord}}</small></p> 
+                    <p class="card-text"><small class="text-muted">历史电话记录：{{$corp->PhoneCallHistoryRecord}}</small></p> 
+                    <p class="card-text"><small class="text-muted">今年电话记录{{$corp->PhoneCallRecord}}</small></p> 
                     <a class="btn btn-primary" href="{{route('corp.edit', $corp->RegNum)}}">录入</a>
                     <a class="btn btn-info" href="{{route('corp.show', $corp->RegNum)}}">查看</a>
                 </div>
