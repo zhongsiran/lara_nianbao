@@ -83,9 +83,11 @@
             <tr>
                 <td>相同电话企业<br>-联系记录</td>
                 <td>
-                    @foreach ($phone_list as $phone_list_item)
-                        {{$phone_list_item->CorpName}} - {{$phone_list_item->PhoneCallRecord}} <br>
-                    @endforeach
+                    <textarea class="form-control" readonly='readonly' rows='10'>
+@foreach ($phone_list as $phone_list_item)
+{{$phone_list_item->Division . '-' . $phone_list_item->type . $phone_list_item->div_corp_index . '-' . $phone_list_item->CorpName}} - {{$phone_list_item->PhoneCallRecord}}
+@endforeach
+                    </textarea>
                 </td>
             </tr>
             @endif
