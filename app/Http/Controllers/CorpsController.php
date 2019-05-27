@@ -48,12 +48,18 @@ class CorpsController extends Controller
     public function show($id)
     {
         $corp = Corp::find($id); //find得到的是object,可以在BLADE中使用$corp->xxx
-            // ->get(); get得到的是collection,需要使用$corp[0]->xxx,或者 $corp->first()->xxx
+        // ->get(); get得到的是collection,需要使用$corp[0]->xxx,或者 $corp->first()->xxx
 
         $type = session('type') ?? $corp->type;
         $div = session('div') ?? $corp->div;
         $page = session('page') ?? '';
-        $data = ['corp'=>$corp, 'div'=>$div, 'type'=>$type, 'page'=>$page, 'page_type'=>'corp_detail'];
+        
+        // 2019-05-27增加：统计电话重复数量
+        $phone_list = Corp::where('Phone', $corp->Phone)
+        ->get();
+        $phone_repeat_count = $phone_list->count();
+        
+        $data = ['corp'=>$corp, 'div'=>$div, 'type'=>$type, 'page'=>$page, 'page_type'=>'corp_detail', 'phone_list'=>$phone_list];
 
         return view('corp.show', $data);
     }
@@ -71,7 +77,14 @@ class CorpsController extends Controller
         $type = session('type') ?? $corp->type;
         $div = session('div') ?? $corp->div;
         $page = session('page') ?? '';
-        $data = ['corp'=>$corp, 'div'=>$div, 'type'=>$type, 'page'=>$page, 'page_type'=>'corp_detail'];
+
+        // 2019-05-27增加：统计电话重复数量
+        $phone_list = Corp::where('Phone', $corp->Phone)
+        ->get();
+        // $phone_list = $phone_list->count();
+
+
+        $data = ['corp'=>$corp, 'div'=>$div, 'type'=>$type, 'page'=>$page, 'page_type'=>'corp_detail', 'phone_list'=>$phone_list];
 
         return view('corp.edit', $data);
     }
