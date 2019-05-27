@@ -5,6 +5,7 @@ require ('corpclass.php');
 $division = "合益所";
 $tablename = "2019年度年报进度统计";
 $corp = new CorpForNianBao("2019_nianbao_corp");
+// $corp = new CorpForNianBao("2019_nianbao_corp_copy");
 $new_corp_status = $corp->new_corp_status();
 $normal_corp_status = $corp->normal_corp_status();
 $zongbiao_status = $corp->dif_type_corp_status('总表');
