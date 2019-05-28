@@ -45,7 +45,7 @@
 
             <tr>
                 <th scope="row">法人及登记电话</th>
-                    <td>{{$corp->RepPerson}} : <span class="name_and_phone">{{preg_replace("/^(\d{3})(\d{4})(\d{4})$/", "$1-$2-$3", $corp->Phone)}}({{$corp->phone_status}})</span> </td>
+            <td>{{$corp->RepPerson}} : <span class="name_and_phone">{{preg_replace("/^(\d{3})(\d{4})(\d{4})$/", "$1-$2-$3", $corp->Phone)}}({{$corp->phone_status}})（出现次数：{{$phone_list->count()}}）</span> </td>
                     <input id="phone" type="hidden" value="{{$corp->Phone}}">
                     <input id="phone_status" type="hidden" value="{{$corp->phone_status}}">
             </tr>
@@ -78,7 +78,21 @@
 
                 </td>
             </tr>
+
+            @if($phone_list->count()>1)
+            <tr>
+                <td>相同电话企业<br>-联系记录</td>
+                <td>
+                    <textarea class="form-control" readonly='readonly' rows='10'>
+@foreach ($phone_list as $phone_list_item)
+{{$phone_list_item->Division . '-' . $phone_list_item->type . $phone_list_item->div_corp_index . '-' . $phone_list_item->CorpName}} - {{$phone_list_item->PhoneCallRecord}}
+@endforeach
+                    </textarea>
+                </td>
+            </tr>
+            @endif
         </tbody>
     </table>
     @yield('input_area')
+    
 @endsection
