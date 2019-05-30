@@ -2,7 +2,7 @@
 define("ROOT", $_SERVER['DOCUMENT_ROOT']);
 header("Content-type:text/html;charset=utf-8;");
 require ('corpclass.php');
-$division = "合益所";
+$division = env('JIAN_GUAN_SUO') . "所";
 $tablename = "2019年度年报进度统计";
 $corp = new CorpForNianBao("2019_nianbao_corp");
 // $corp = new CorpForNianBao("2019_nianbao_corp_copy");

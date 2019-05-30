@@ -11,7 +11,7 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
         <div class="container">
             <div class="col-md-offset-1 col-md-10">
-                <a href="/" id="logo">合益市场监管所年报工作系统</a>
+                <a href="/" id="logo">{{env('JIAN_GUAN_SUO')}} 市场监管所年报工作系统</a>
             </div>
         </div>
     </header>
@@ -20,7 +20,7 @@
         <div class="row">
             <div class="container">
                 <div class="jumbotron col-md-12 text-center" style="background-color: white;">
-                    <h1>合益市场监管所年报工作系统</h1>
+                    <h1>{{env('JIAN_GUAN_SUO')}}市场监管所年报工作系统</h1>
                 </div>
             </div>
             <div class="row">
