@@ -34,6 +34,13 @@
             </li>
             @endif
 
+            <li>            
+                <form class="form-inline" method="GET" action="/corps/search">
+                    <input name="search_content" class="form-control mr-sm-2" type="search" placeholder="搜索注册号或企业名称" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </li>
+
             {{-- <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
             </li> --}}

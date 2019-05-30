@@ -29,9 +29,12 @@ class CorpsController extends Controller
         $request->session()->put('div', $div);
         $request->session()->put('page', $page);
 
+        if ($div = '全所') {
+            $div = '';
+        }
         // 数据库操作,根据 type 和 div 取得数据,并用paginate()分页
         $corps = Corp::where('type', $type)
-                ->where('Division', $div)
+                ->where('Division', 'like', '%'. $div . "%")
                 ->paginate(10);
                 
         $data = ['corps'=>$corps, 'div'=>$div, 'type'=>$type, 'page'=>$page, 'page_type'=>'corp_index'];
@@ -112,6 +115,25 @@ class CorpsController extends Controller
         // return redirect(route('corp.edit', $id));
     }
     
+    public function corps_search(Request $request)
+    {
+        $search_content = $request->search_content ?? '';
+        
+        // 判断是否纯数字
+        if (intval($search_content)) {
+            $search_column = 'RegNum';
+        }else {
+            $search_column = 'CorpName';
+        }
+        // 数据库操作,根据 regnum模糊查询 取得数据,并用paginate()分页
+        $corps = Corp::where($search_column, 'like', "%" . $search_content . "%")
+        ->paginate(10);
+
+        $data = ['corps' => $corps, 'page_type' => 'corp_index'];
+        // 输出到blade模版 corp中的index模版
+        return view('corp.index', $data);
+    }
+
     // 要求div corp index为连续的
     public function next(Request $request, $id)
     {
