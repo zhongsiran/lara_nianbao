@@ -51,7 +51,7 @@ class CorpForNianBao
 		}elseif ($type == '总表'){
 			$field = "`type`, '17年新办', '一般企业','16年未报'";
 			$group = '`type`';
-			$where_clause = "`active_state` = 1 AND `designated_person` != '骆所'";
+			$where_clause = "`active_state`";
 		}elseif ($type == '各人情况') {
 			$field = "`designated_person`, '钟振辉', '秦志峰', '毕树添', '何奕江','李小明', '刘健文', '钟思燃','窗口', '副所长','骆所','待处理'";
 			$group = '`division`';
