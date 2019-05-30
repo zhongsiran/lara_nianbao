@@ -3,6 +3,15 @@
 @section('content')
     @include('layouts._navi_bar')
 
+    @if (isset($is_search_page))
+        <div class="card-deck">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">根据条件“{{$search_content}}”共搜索到{{$corps->count()}}家企业</h5>
+                </div>
+            </div>
+        </div>    
+    @endif
     
     <!-- 用CHUNK（）每x个分一组 -->
     @foreach ($corps->chunk(1) as $chunk)
@@ -23,7 +32,7 @@
             @endswitch
                 <div class="card-body">
 
-                    <h5 class="card-title">{{$corp->div_corp_index}}-{{$corp->CorpName}}</h5>
+                    <h5 class="card-title">{{$corp->Division}}-{{$corp->type}}-{{$corp->div_corp_index}}-{{$corp->CorpName}}</h5>
                     {{-- SWITCH 通知情况以决定颜色 --}}
 
                     @switch($corp->Status) 
@@ -46,7 +55,14 @@
                     <p class="card-text">{{$corp->Addr}}</p>
                     <p class="card-text"><small class="text-muted">历史电话记录：{{$corp->PhoneCallHistoryRecord}}</small></p> 
                     <p class="card-text"><small class="text-muted">今年电话记录：{{$corp->PhoneCallRecord}}</small></p> 
-                    <a class="btn btn-primary" href="{{route('corp.edit', $corp->RegNum)}}">录入</a>
+                    @if (isset($is_search_page))
+                    {{--  判断是否搜索列表  --}}
+                        <a class="btn btn-primary" href="{{route('corp.edit', ['id'=>$corp->RegNum, 'search_content' => $search_content])}}">录入</a>
+                    @else
+                        <a class="btn btn-primary" href="{{route('corp.edit', $corp->RegNum)}}">录入</a>
+                    @endif
+                    
+
                     {{-- <a class="btn btn-info" href="{{route('corp.show', $corp->RegNum)}}">查看</a> --}}
                 </div>
             </div>

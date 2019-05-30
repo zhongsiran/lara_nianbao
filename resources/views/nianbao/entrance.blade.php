@@ -50,7 +50,6 @@
                                     <option value="C3">8.C3</option>
                                     <option value="C4">9.C4</option>
                                     <option value="进出口">10.进出口</option>
-                                    <option value="全所">11.全所</option>
                                 </select>
                             </div>
                             <input type="submit" class="btn btn-primary btn-lg" role="button" value="点击进入">

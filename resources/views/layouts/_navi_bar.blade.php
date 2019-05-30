@@ -17,21 +17,28 @@
             
                     @if (isset($page_type) and $page_type == 'corp_detail')
                     {{--  根据页面类型决定是否显示“返回名单按钮”  --}}
-                        @if (isset($page))
-                            <a class="dropdown-item" href="{{route('corp.index',['type'=>$type, 'div'=>$div, 'page'=>$page])}}">返回名单列表</a>
+                        @if (!isset($search_content))
+                        {{--  判断是否搜索列表  --}}
+                            @if (isset($page))
+                                <a class="dropdown-item" href="{{route('corp.index',['type'=>$type, 'div'=>$div, 'page'=>$page])}}">返回名单列表</a>
+                            @else
+                                <a class="dropdown-item" href="{{route('corp.index',['type'=>$type, 'div'=>$div])}}">返回名单列表</a>
+                            @endif
                         @else
-                            <a class="dropdown-item" href="{{route('corp.index',['type'=>$type, 'div'=>$div])}}">返回名单列表</a>
+                        {{--  如果是搜索列表  --}}
+                            <a class="dropdown-item" href="{{route('corp.search',['search_content'=>$search_content])}}">返回名单列表</a>
                         @endif
                     @endif
                 </div>
             </li>
+
             @if (isset($corp))
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('corp.prev', $corp->RegNum)}}">前一户</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('corp.next', $corp->RegNum)}}">下一户</a>
-            </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('corp.prev', $corp->RegNum)}}">前一户</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('corp.next', $corp->RegNum)}}">下一户</a>
+                </li>
             @endif
 
             <li>            
