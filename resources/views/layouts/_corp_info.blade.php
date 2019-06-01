@@ -55,6 +55,10 @@
                     {{$corp->ContactPerson}} :
                     <span class="name_and_phone">
                         {{preg_replace("/^(\d{3})(\d{4})(\d{4})$/", "$1-$2-$3", $corp->ContactPhone)}}({{$corp->cphone_status}})
+                        {{-- $contact_phone_list可能为0，则不显示 --}}
+                        @if ($contact_phone_list->count() != 0)
+                            （出现次数：{{$contact_phone_list->count()}}）    
+                        @endif
                     </span>
                     <input id="cphone" type="hidden" value="{{$corp->ContactPhone}}">
                     <input id="cphone_status" type="hidden" value="{{$corp->cphone_status}}">
@@ -78,21 +82,64 @@
 
                 </td>
             </tr>
-
-            @if($phone_list->count()>1)
-            <tr>
-                <td>相同电话企业<br>-联系记录</td>
-                <td>
-                    <textarea class="form-control" readonly='readonly' rows='10'>
-@foreach ($phone_list as $phone_list_item)
-{{$phone_list_item->Division . '-' . $phone_list_item->type . $phone_list_item->div_corp_index . '-' . $phone_list_item->CorpName}} - {{$phone_list_item->PhoneCallRecord}}
-@endforeach
-                    </textarea>
-                </td>
-            </tr>
-            @endif
         </tbody>
     </table>
+
     @yield('input_area')
-    
+
+    {{-- 电话重复企业显示区 --}}
+    @if($phone_list->count() > 1)
+    <h4 id="phone_repeat_corps">登记电话重复企业名单</h4>
+    <table class="table table-dark table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">片区</th>
+                <th scope="col">名称</th>
+                <th scope="col">电话联络情况</th>
+                <th scope="col">年报情况</th>
+                <th scope="col">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($phone_list as $phone_list_item)
+            <tr>
+                <td>{{$phone_list_item->Division . '-' . $phone_list_item->type .'-'. $phone_list_item->div_corp_index}}
+                </td>
+                <td>{{$phone_list_item->CorpName}}</td>
+                <td>{{$phone_list_item->PhoneCallRecord}}</td>
+                <td>{{$phone_list_item->nian_bao_status}}</td>
+                <td><a class="btn btn-primary" href="{{route('corp.edit', $phone_list_item->RegNum)}}">跳转</a></td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    @endif
+
+    @if ($contact_phone_list->count() > 1)
+    <h4 id="contact_phone_repeat_corps">联络员电话重复企业名单</h4>
+    <table class="table table-dark table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">片区</th>
+                <th scope="col">名称</th>
+                <th scope="col">电话联络情况</th>
+                <th scope="col">年报情况</th>
+                <th scope="col">操作</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($contact_phone_list as $contact_phone_list_item)
+            <tr>
+                <td>{{$contact_phone_list_item->Division . '-' . $contact_phone_list_item->type .'-'. $contact_phone_list_item->div_corp_index}}
+                </td>
+                <td>{{$contact_phone_list_item->CorpName}}</td>
+                <td>{{$contact_phone_list_item->PhoneCallRecord}}</td>
+                <td>{{$contact_phone_list_item->nian_bao_status}}</td>
+                <td><a class="btn btn-primary" href="{{route('corp.edit', $contact_phone_list_item->RegNum)}}">跳转</a></td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+    @endif
+    {{-- 电话重复企业显示区结束 --}}
 @endsection

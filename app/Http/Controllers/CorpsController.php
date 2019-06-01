@@ -61,8 +61,23 @@ class CorpsController extends Controller
         $phone_list = Corp::where('Phone', $corp->Phone)
         ->get();
         $phone_repeat_count = $phone_list->count();
+
+        // 2019-6-1增加：联络员电话重复数量
+        $contact_phone_list = Corp::where('ContactPhone', $corp->ContactPhone)
+        ->where('ContactPhone', '<>', '无记录')
+        ->get();
+        $contact_phone_repeat_count = $contact_phone_list->count();
         
-        $data = ['corp'=>$corp, 'div'=>$div, 'type'=>$type, 'page'=>$page, 'page_type'=>'corp_detail', 'phone_list'=>$phone_list];
+        $data = 
+        [
+            'corp'=>$corp, 
+            'div'=>$div, 
+            'type'=>$type, 
+            'page'=>$page, 
+            'page_type'=>'corp_detail', 
+            'phone_list'=>$phone_list, 
+            'cphone_list'=>$contact_phone_list
+        ];
 
         return view('corp.show', $data);
     }
@@ -84,11 +99,26 @@ class CorpsController extends Controller
         // 2019-05-27增加：统计电话重复数量
         $phone_list = Corp::where('Phone', $corp->Phone)
         ->get();
-        // $phone_list = $phone_list->count();
-        // todo 统计联络员电话重复
+
+        // 2019-6-1 增加：统计联络员电话重复数量
+        $contact_phone_list = Corp::where('ContactPhone', $corp->ContactPhone)
+        ->where('ContactPhone', '<>', '无记录')
+        ->get();
+
+
         $search_content = $request->search_content ?? NULL;
 
-        $data = ['corp'=>$corp, 'div'=>$div, 'type'=>$type, 'page'=>$page, 'page_type'=>'corp_detail', 'phone_list'=>$phone_list, 'search_content'=>$search_content];
+        $data = 
+        [
+            'corp'=>$corp, 
+            'div'=>$div, 
+            'type'=>$type, 
+            'page'=>$page, 
+            'page_type'=>'corp_detail', 
+            'phone_list'=>$phone_list, 
+            'contact_phone_list'=>$contact_phone_list,
+            'search_content'=>$search_content
+        ];
 
         return view('corp.edit', $data);
     }

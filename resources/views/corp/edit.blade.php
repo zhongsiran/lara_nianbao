@@ -2,7 +2,7 @@
 @extends('layouts._corp_info')
 @section('input_area')
     @verbatim
-    <h4 id="input_area_title">录入区域</h2>
+    <h4 id="input_area_title">录入区域</h4>
     <table id="input-table" class="table table-dark table-bordered table-sm">
         <thead>
             <td>项目</td>
