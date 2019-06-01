@@ -8,9 +8,9 @@ $corp = new CorpForNianBao("2019_nianbao_corp");
 // $corp = new CorpForNianBao("2019_nianbao_corp_copy");
 $new_corp_status = $corp->new_corp_status();
 $normal_corp_status = $corp->normal_corp_status();
-$zongbiao_status = $corp->dif_type_corp_status('总表');
+// $zongbiao_status = $corp->dif_type_corp_status('总表');
 // $custom_corp_status = $corp->custom_search_status('17年新办');
-$all_person_ststus = $corp->dif_type_corp_status('各人情况');
+// $all_person_ststus = $corp->dif_type_corp_status('各人情况');
 
 $new_corp_phone_call_status = $corp->new_corp_phone_call_status();
 $normal_corp_phone_call_status = $corp->normal_corp_phone_call_status();
@@ -48,7 +48,7 @@ echo <<< EOT
 			<th style="background-color:#00ff00">已报数量</th>
 			<th style="background-color:#F3F781">年报率</th>
 			</tr>
-			$zongbiao_status
+			
 		</table>
 		</div>
 		<a href="/" class="ui-button ui-widget ui-corner-all">返回入口</a>
@@ -64,7 +64,7 @@ echo <<< EOT
 			<th style="background-color:#00ff00">已报数量</th>
 			<th style="background-color:#F3F781">年报率</th>
 			</tr>
-			$all_person_ststus
+
 		</table>
 		<p>
 		</p>
